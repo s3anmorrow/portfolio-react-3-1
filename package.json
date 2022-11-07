@@ -1,0 +1,11 @@
+{
+  "name": "full-stack-project-folder-setup",
+  "version": "1.0.0",
+  "description": "",
+  "main": "",
+  "scripts": {
+    "setup": "npm install --prefix ./api && npm install --prefix ./client"
+  },
+  "author": "Sean Morrow",
+  "license": "ISC"
+}

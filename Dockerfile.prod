@@ -1,0 +1,25 @@
+# Production Build
+FROM node:14.15.3-alpine
+
+# Stage 1: Build react client on container
+WORKDIR /usr/app/client
+COPY client/package*.json ./
+RUN npm install
+COPY client/ .
+# build the production version of the client side React Web app (creates /usr/app/client/build)
+# this needs to use yarn instead of npm for it to work on windows :(
+RUN yarn build
+
+# !!! Comment out below if no MongoDB
+# # Stage 2: seed the mongoDB database
+# FROM mongo
+# WORKDIR /usr/db
+# COPY mongo/*.js /docker-entrypoint-initdb.d
+
+# Stage 3 : Build Express Server (Web API) on container
+WORKDIR /usr/app/api
+COPY api/package*.json ./
+RUN npm install
+COPY api/ .
+EXPOSE 80
+CMD ["npm","start"]

@@ -1,0 +1,26 @@
+{
+  "name": "api",
+  "version": "1.0.0",
+  "description": "",
+  "main": "src/Server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon src/Server.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "jshintConfig": {
+    "esversion": 8,
+    "strict": "implied",
+    "devel": true,
+    "node": true,
+    "globals": {}
+  },
+  "dependencies": {
+    "cors": "^2.8.5",
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "nodemon": "^2.0.20"
+  }
+}

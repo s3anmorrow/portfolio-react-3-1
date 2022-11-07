@@ -1,0 +1,37 @@
+version: '3.7'
+
+services:
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    image: api-server
+    container_name: my-api-server
+    command: npm start
+    volumes:
+      - ./api:/usr/app/api
+      - node_modules_api:/usr/app/api/node_modules
+    ports:
+      - "80:80"
+    environment:
+      - NODE_ENV=development
+
+  client:
+    build:
+      context: ./client
+      dockerfile: Dockerfile
+    image: client-server
+    container_name: my-client-server
+    command: npm start
+    volumes:
+      # bind mounting entire project folder to container for watcher detection
+      - ./client:/usr/app/client
+      - node_modules_client:/usr/app/client/node_modules
+    depends_on:
+      - api
+    ports:
+      - "3000:3000"
+
+volumes:
+    node_modules_api:
+    node_modules_client:
